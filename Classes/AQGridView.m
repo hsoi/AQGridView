@@ -272,7 +272,7 @@ NSString * const AQGridViewSelectionDidChangeNotification = @"AQGridViewSelectio
 	_flags.resizesCellWidths = i;
 	[self setNeedsLayout];
 }
-
+/*
 - (BOOL) clipsContentWidthToBounds
 {
 	return ( self.layoutDirection == AQGridViewLayoutDirectionVertical );
@@ -282,6 +282,7 @@ NSString * const AQGridViewSelectionDidChangeNotification = @"AQGridViewSelectio
 {
 	self.layoutDirection = (value ? AQGridViewLayoutDirectionVertical : AQGridViewLayoutDirectionHorizontal);
 }
+*/
 
 - (BOOL) usesPagedHorizontalScrolling
 {
@@ -439,7 +440,7 @@ NSString * const AQGridViewSelectionDidChangeNotification = @"AQGridViewSelectio
 
 	if ( offset.y + self.bounds.size.height > gridSize.height )
 	{
-		offset.y = MAX(0.0, self.contentSize.height - self.bounds.size.height);
+		offset.y = MAX(0.0f, self.contentSize.height - self.bounds.size.height);
 	}
 	else if ( !CGPointEqualToPoint(oldOffset, CGPointZero) )	// stick-to-top takes precedence
 	{
@@ -447,9 +448,9 @@ NSString * const AQGridViewSelectionDidChangeNotification = @"AQGridViewSelectio
 		{
 			// we were scrolled to the bottom-- stay there as our height decreases
 			if ( self.layoutDirection == AQGridViewLayoutDirectionVertical )
-				offset.y = MAX(0.0, self.contentSize.height - self.bounds.size.height);
+				offset.y = MAX(0.0f, self.contentSize.height - self.bounds.size.height);
 			else
-				offset.x = MAX(0.0, self.contentSize.width - self.bounds.size.width);
+				offset.x = MAX(0.0f, self.contentSize.width - self.bounds.size.width);
 		}
 	}
 
@@ -522,7 +523,7 @@ NSString * const AQGridViewSelectionDidChangeNotification = @"AQGridViewSelectio
 	        newSize.height = minimumHeight;
 	}
 
-	newSize.height = fmax(newSize.height, self.frame.size.height);
+	newSize.height = (CGFloat)fmax(newSize.height, self.frame.size.height);
 
 	CGSize oldSize = self.contentSize;
 	[super setContentSize: newSize];
@@ -534,7 +535,7 @@ NSString * const AQGridViewSelectionDidChangeNotification = @"AQGridViewSelectio
 	{
 		CGRect b = self.bounds;
 		CGFloat diff = CGRectGetMaxY(b) - newSize.height;
-		b.origin.y = MAX(0.0, b.origin.y - diff);
+		b.origin.y = MAX(0.0f, b.origin.y - diff);
 		self.bounds = b;
 	}
 }
@@ -789,11 +790,11 @@ NSString * const AQGridViewSelectionDidChangeNotification = @"AQGridViewSelectio
 			break;
 
 		case AQGridViewScrollPositionMiddle:
-			targetRect.origin.y = MAX(gridRect.origin.y - (CGFloat)ceilf((targetRect.size.height - gridRect.size.height) * 0.5), 0.0);
+			targetRect.origin.y = MAX(gridRect.origin.y - (CGFloat)ceilf((targetRect.size.height - gridRect.size.height) * 0.5f), 0.0f);
 			break;
 
 		case AQGridViewScrollPositionBottom:
-			targetRect.origin.y = MAX((CGFloat)floorf(gridRect.origin.y - (targetRect.size.height - gridRect.size.height)), 0.0);
+			targetRect.origin.y = MAX((CGFloat)floorf(gridRect.origin.y - (targetRect.size.height - gridRect.size.height)), 0.0f);
 			break;
 	}
 
@@ -2082,8 +2083,8 @@ NSArray * __sortDescriptors;
 			cellFrame.size.width = gridRect.size.width;
 		if ( cellFrame.size.height > gridRect.size.height )
 			cellFrame.size.height = gridRect.size.height;
-		cellFrame.origin.x = gridRect.origin.x + floorf( (gridRect.size.width - cellFrame.size.width) * 0.5 );
-		cellFrame.origin.y = gridRect.origin.y + floorf( (gridRect.size.height - cellFrame.size.height) * 0.5 );
+		cellFrame.origin.x = gridRect.origin.x + floorf( (gridRect.size.width - cellFrame.size.width) * 0.5f );
+		cellFrame.origin.y = gridRect.origin.y + floorf( (gridRect.size.height - cellFrame.size.height) * 0.5f );
 	}
 
 	// let the delegate update it if appropriate

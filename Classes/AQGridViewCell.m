@@ -546,7 +546,7 @@
 		{
 			if ( _bottomSeparatorView == nil )
 			{
-				_bottomSeparatorView = [[UIView alloc] initWithFrame: CGRectMake(0.0, self.bounds.size.height - 1.0, self.bounds.size.width, 1.0)];
+				_bottomSeparatorView = [[UIView alloc] initWithFrame: CGRectMake(0.0f, self.bounds.size.height - 1.0f, self.bounds.size.width, 1.0f)];
 				_bottomSeparatorView.autoresizingMask = UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleTopMargin;
 				[self insertSubview: _bottomSeparatorView atIndex: 0];
 			}
@@ -565,7 +565,7 @@
 		{
 			if ( _rightSeparatorView == nil )
 			{
-				_rightSeparatorView = [[UIView alloc] initWithFrame: CGRectMake(self.bounds.size.width - 1.0, 0.0, 1.0, self.bounds.size.height)];
+				_rightSeparatorView = [[UIView alloc] initWithFrame: CGRectMake(self.bounds.size.width - 1.0f, 0.0f, 1.0f, self.bounds.size.height)];
 				_rightSeparatorView.autoresizingMask = UIViewAutoresizingFlexibleHeight|UIViewAutoresizingFlexibleLeftMargin;
 				[self insertSubview: _rightSeparatorView atIndex: 0];
 			}

@@ -719,7 +719,7 @@
 		CGFloat diff = maxY - gridSize.height;
 		
 		// grow its height so both incoming and outgoing items get animated
-		contentRect.origin.y = MAX(0.0, contentRect.origin.y - diff);
+		contentRect.origin.y = MAX(0.0f, contentRect.origin.y - diff);
 		contentRect.size.height += diff;
 		
 		// this will set the bounds for us, and it'll animate thanks to our animation block
@@ -730,7 +730,7 @@
 		CGFloat diff = maxX - gridSize.width;
 		
 		// grow its width so both incoming and outgoing items get animated
-		contentRect.origin.x = MAX(0.0, contentRect.origin.x - diff);
+		contentRect.origin.x = MAX(0.0f, contentRect.origin.x - diff);
 		contentRect.size.width += diff;
 		
 		// this will set the bounds for us, and it'll animate thanks to our animation block
