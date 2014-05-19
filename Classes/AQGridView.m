@@ -695,7 +695,8 @@ NSString * const AQGridViewSelectionDidChangeNotification = @"AQGridViewSelectio
 		actualHeight = [_gridData cellSize].height * ([_gridData numberOfItems] / [_gridData numberOfItemsPerRow] + 1);
 
 	}
-	for (; actualHeight < minimumHeight; actualHeight += [_gridData cellSize].height) {
+	while (actualHeight < minimumHeight) {
+        actualHeight += [_gridData cellSize].height;
 	}
 	backgroundRect.size.height = actualHeight;
 
