@@ -131,7 +131,12 @@
 
 - (void) updateNewGridDataAndCreateMappingTables
 {
+#if __LP64__
+#define GUARD_ITEMS 0
+#else
 #define GUARD_ITEMS 1
+#endif
+    
 #if GUARD_ITEMS
 # define TEST_GUARD(array,count)                                                    \
     for ( int j = 0; j < 8; j++ )                                                   \
